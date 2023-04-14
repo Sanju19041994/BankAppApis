@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @ToString
 public class UserDto {
 
-    @NotNull
     private Integer userId;
 
     @NotEmpty @NotNull @Size(min = 2, max = 30, message = "firstName should be in rage of 2 to 30")
@@ -44,6 +43,6 @@ public class UserDto {
     @NotEmpty @NotNull @Pattern(regexp = "^(.+)@(\\S+)$",message = "enter valid email address like : username@domain.com")
     private String email;
 
-
-
+    @NotEmpty @NotNull
+    private String password;
 }

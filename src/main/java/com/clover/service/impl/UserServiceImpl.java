@@ -1,5 +1,6 @@
 package com.clover.service.impl;
 
+import com.clover.constants.MyConstants;
 import com.clover.dtos.UserDto;
 import com.clover.exception.ResourceNotFoundException;
 import com.clover.pojo.User;
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto updateUser(UserDto userDto, Integer userId) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found with given userId"));
+        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException(MyConstants.USER_N_F_ID));
 
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
@@ -45,25 +46,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUser(Integer userId) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found with given userId"));
+        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException(MyConstants.USER_N_F_ID));
         return modelMapper.map(user, UserDto.class);
     }
 
     @Override
     public UserDto userByEmail(String email) {
-        User user = userRepo.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found with given mail id"));
+        User user = userRepo.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(MyConstants.USER_N_F_EMAIL));
         return modelMapper.map(user, UserDto.class);
     }
 
     @Override
     public UserDto userByPan(String panNumber) {
-        User user = userRepo.findByPanNumber(panNumber).orElseThrow(() -> new ResourceNotFoundException("User not found with given PAN Number"));
+        User user = userRepo.findByPanNumber(panNumber).orElseThrow(() -> new ResourceNotFoundException(MyConstants.USER_N_F_PAN));
         return modelMapper.map(user, UserDto.class);
     }
 
     @Override
     public UserDto userByAadhar(String aadharNumber) {
-        User user = userRepo.findByAadharNumber(aadharNumber).orElseThrow(() -> new ResourceNotFoundException("User not found with given Aadhar Number"));
+        User user = userRepo.findByAadharNumber(aadharNumber).orElseThrow(() -> new ResourceNotFoundException(MyConstants.USER_N_F_AADHAR));
         return modelMapper.map(user, UserDto.class);
     }
 
@@ -85,7 +86,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Integer userId) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found with given userId"));
+        User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException(MyConstants.USER_N_F_ID));
         userRepo.delete(user);
     }
 }
