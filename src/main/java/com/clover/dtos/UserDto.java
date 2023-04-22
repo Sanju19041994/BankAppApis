@@ -45,4 +45,10 @@ public class UserDto {
 
     @NotEmpty @NotNull
     private String password;
+
+    private Boolean active;
+
+    private String role;
+
+
 }
